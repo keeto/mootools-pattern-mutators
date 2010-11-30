@@ -3,18 +3,6 @@ Pattern Mutators for MooTools
 
 Provides pattern-based mutation for MooTools classes. Works with MooTools 1.3.
 
-Prelude Stuff
--------------
-
-### Author and License
-
-Mark "Keeto" Obcena <keetology.com>  
-Copyright 2010, MIT-style License
-
-### Credits
-
-Original pattern-based mutator idea and code for the `protected` and `linked` mutators from Valerio Proietti via MooTools 2.0.
-
 
 Pattern-Based What?
 -------------------
@@ -122,6 +110,19 @@ Implementation Notes
 - Pattern mutators are tested in reverse: the last mutator declared will be the first one tested. This is due to the use of a reverse `while` loop to speed-up the matching process.
 - Pattern mutators take precedence over key-based mutators, and a pattern mutator could be applied *together* with a key-based mutator in some cases.
 - Several mutators can be used in a single key as long as the mutators use flexible regexp patterns and always invoke `implement` method.
+
+
+Project Stuff
+-------------
+
+### Author and License
+
+Mark "Keeto" Obcena <keetology.com>  
+Copyright 2010, MIT-style License
+
+### Credits
+
+Original pattern-based mutator idea and code for the `protected` and `linked` mutators from Valerio Proietti via MooTools 2.0.
 
 
 [utmh4]: http://keetology.com/blog/2009/10/27/up-the-moo-herd-iv-theres-a-class-for-this#mutator "Section on Mutators from Up The Moo Herd"
