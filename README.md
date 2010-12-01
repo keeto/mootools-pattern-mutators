@@ -77,10 +77,10 @@ This mutator has a pattern that states it should be applied to any key in a clas
 Instead of creating a separate `Protected` key in our class declaration, we simply added a `protected ` qualifier at the start of the method name. The effects, though, are the same as our previous declaration.
 
 
-Class Method: defineMutator
----------------------------
+Class Static Method: defineMutator
+----------------------------------
 
-This extension provides a single function, `Class.defineMutator`, that can be used to define both key-based and pattern-based mutators
+This extension provides a function, `Class.defineMutator`, that can be used to define both key-based and pattern-based mutators
 
 ### Syntax:
 
@@ -106,7 +106,7 @@ This extension provides a single function, `Class.defineMutator`, that can be us
 Implementation Notes
 --------------------
 
-- This extension wraps the default `Class.prototype.implement` method in order to add the pattern-based mutator check. Internally, though, it still uses the default `implement` method in order to add the members to the class' `prototype`.
+- This extension wraps the default `Class.prototype.implement` method in order to add the pattern-based mutator check. Internally, though, it still uses the default `implement` method in order to add the members to the class' `prototype`. The default `implement` method is reimplemented as `define`.
 - Pattern mutators are tested in reverse: the last mutator declared will be the first one tested. This is due to the use of a reverse `while` loop to speed-up the matching process.
 - Pattern mutators take precedence over key-based mutators, and a pattern mutator could be applied *together* with a key-based mutator in some cases.
 - Several mutators can be used in a single key as long as the mutators use flexible regexp patterns and always invoke `implement` method.

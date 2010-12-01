@@ -11,7 +11,7 @@ copyright: Mark Obcena
 
 requires: Class
 
-provides: Class.defineMutator
+provides: [Class.defineMutator, Class.define]
 
 ...
 */
@@ -44,7 +44,8 @@ Class.defineMutator = function(key, fn){
 	return this;
 };
 
-var oldImplement = Class.prototype.implement;
+var define = Class.prototype.implement;
+Class.implement('define', define);
 
 var implement = Class.prototype.implement = function(key, value, retain){
 	var mutator = lookup(key);
@@ -53,12 +54,12 @@ var implement = Class.prototype.implement = function(key, value, retain){
 		mutator[0].unshift(value);
 		value = mutator.shift();
 	}
-	return oldImplement.call(this, key, value, retain);
+	return define.call(this, key, value, retain);
 }.overloadSetter();
 
 // Default Mutators
 Class.defineMutator(/^protected\s(\w+)/, function(fn, name){
-	this.implement(name, fn.protect());
+	this.define(name, fn.protect());
 });
 
 Class.defineMutator(/^linked\s(\w+)/, function(value, name){
@@ -72,7 +73,10 @@ Class.defineMutator(/^static\s(\w+)/, function(fn, name){
 // Reimplement "implement" in all classes..
 for (var i in window){
 	var klass = window[i];
-	if (klass instanceof Function && typeOf(klass) == 'class') klass.implement = implement;
+	if (klass instanceof Function && typeOf(klass) == 'class'){
+		klass.implement = implement;
+		klass.define = define;
+	}
 }
 
 })();
