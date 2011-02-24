@@ -72,14 +72,13 @@ Class.defineMutator(/^static\s(\w+)/, function(fn, name){
 
 // Reimplement "implement" in all classes..
 for (var i in window){
-	try{
+	try {
 		var klass = window[i];
 		if (klass instanceof Function && typeOf(klass) == 'class'){
 			klass.implement = implement;
 			klass.define = define;
 		}
-	}catch(x){
-	}
+	} catch(e){}
 }
 
 })();
